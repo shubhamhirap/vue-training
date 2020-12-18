@@ -3,7 +3,7 @@
     <!-- text-binding with Mustache syntax -->
     <div>{{ greet }} {{ name }}</div>
     <!-- text binding with directive syntax -->
-    <div v-text="singer"></div>
+    <div v-html="singer"></div>
   </div>
 </template>
 
@@ -14,7 +14,7 @@ export default {
     return {
       greet: "Hello",
       name: "Lucifer",
-      singer: "post malone",
+      singer: "<strong>post malone</strong>",
     };
   },
 };
