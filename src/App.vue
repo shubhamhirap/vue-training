@@ -44,6 +44,23 @@
     >
       Object Conditional
     </h3>
+
+    <!-- bind style with object syntax -->
+    <span
+      v-bind:style="{
+        backgroundColor: highlightColor,
+        padding: '10px',
+      }"
+    >
+      Inline Style
+    </span>
+
+    <!-- bind style with styleObject syntax -->
+    <span v-bind:style="highlightStyleObject"> Style with styleObject </span>
+    <!-- bind style with styleObject syntax -->
+    <span v-bind:style="[baseStyleObject, successStyle]">
+      style objects with array
+    </span>
   </div>
 </template>
 
@@ -60,6 +77,20 @@ export default {
       status: "danger",
       isPromoted: true,
       isSoldOut: true,
+      highlightColor: "orange",
+      highlightStyleObject: {
+        padding: "5px",
+        backgroundColor: "#00bfff",
+        margin: "5px",
+      },
+      baseStyleObject: {
+        fontSize: "30px",
+        margin: "10px",
+        padding: "7px",
+      },
+      successStyle: {
+        color: "#228b22",
+      },
     };
   },
 };
