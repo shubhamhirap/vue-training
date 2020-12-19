@@ -2,8 +2,12 @@
   <div>
     <!-- text-binding with Mustache syntax -->
     <div>{{ greet }} {{ name }}</div>
-    <!-- text binding with directive syntax -->
+    <!-- html binding -->
     <div v-html="singer"></div>
+
+    <!-- attr binding -->
+    <h2 v-bind:id="headingId">Heading</h2>
+    <button v-bind:disabled="isDisabled">Bind</button>
   </div>
 </template>
 
@@ -15,6 +19,8 @@ export default {
       greet: "Hello",
       name: "Lucifer",
       singer: "<strong>post malone</strong>",
+      headingId: "heading",
+      isDisabled: true,
     };
   },
 };
