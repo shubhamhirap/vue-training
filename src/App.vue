@@ -57,8 +57,9 @@
 
     <!-- bind style with styleObject syntax -->
     <span v-bind:style="highlightStyleObject"> Style with styleObject </span>
-    <!-- bind style with styleObject syntax -->
-    <span v-bind:style="[baseStyleObject, successStyle]">
+
+    <!-- bind style with styleObject syntax and v-bind shorthand -->
+    <span :style="[baseStyleObject, successStyle]">
       style objects with array
     </span>
   </div>
