@@ -1,17 +1,28 @@
 <template>
   <div>
-    <h2 v-if="num === 0">The number is Zero</h2>
-    <h2 v-else-if="num < 0">The number negative</h2>
-    <h2 v-else-if="num > 0">The number positive</h2>
-    <h2 v-else>The number is not Zero</h2>
+    <!-- array of strings -->
+    <h2 v-for="(name, index) in names" :key="name">
+      {{ index + 1 }}. {{ name }}
+    </h2>
 
-    <template v-if="display">
-      <h2>Devil</h2>
-      <h2>Devil's Diary</h2>
-      <h2>Vue</h2>
-    </template>
+    <!-- Array of objects -->
+    <h2 v-for="name in fullNames" :key="name.firstName">
+      {{ name.firstName }} {{ name.lastName }}
+    </h2>
 
-    <h2 v-show="display">Using v-show</h2>
+    <!-- Array of arrays -->
+    <div v-for="actor in actors" :key="actor.name">
+      <h2>{{ actor.name }}</h2>
+      <h3 v-for="movie in actor.movies" :key="movie">{{ movie }}</h3>
+    </div>
+
+    <!-- Iterate over the object properties -->
+    <!-- order of value, key and index matter in v-for -->
+    <h2 v-for="(value, key, index) in myInfo" :key="value">
+      {{ index + 1 }}. {{ key }} : {{ value }}
+    </h2>
+
+    <!-- v-for also support with template tag -->
   </div>
 </template>
 
@@ -20,8 +31,35 @@ export default {
   name: "App",
   data() {
     return {
-      num: -1,
-      display: true,
+      names: ["devil", "lucifer", "man of mayhem"],
+      fullNames: [
+        {
+          firstName: "John",
+          lastName: "Cena",
+        },
+        {
+          firstName: "Sheldon",
+          lastName: "Cooper",
+        },
+        {
+          firstName: "Adolf",
+          lastName: "Hitler",
+        },
+      ],
+      actors: [
+        {
+          name: "Emraan Hashmi",
+          movies: ["murder 2", "Jannat", "Awarapan"],
+        },
+        {
+          name: "Vijay Deverakonda",
+          movies: ["Arjun Reddy", "Dear Comrade"],
+        },
+      ],
+      myInfo: {
+        name: "Lucifer",
+        address: "Las Vegas",
+      },
     };
   },
 };
