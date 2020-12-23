@@ -1,67 +1,17 @@
 <template>
   <div>
-    <!-- text-binding with Mustache syntax -->
-    <div>{{ greet }} {{ name }}</div>
-    <!-- html binding -->
-    <div v-html="singer"></div>
+    <h2 v-if="num === 0">The number is Zero</h2>
+    <h2 v-else-if="num < 0">The number negative</h2>
+    <h2 v-else-if="num > 0">The number positive</h2>
+    <h2 v-else>The number is not Zero</h2>
 
-    <!-- attr binding -->
-    <h2 v-bind:id="headingId">Heading</h2>
-    <button v-bind:disabled="isDisabled">Bind</button>
+    <template v-if="display">
+      <h2>Devil</h2>
+      <h2>Devil's Diary</h2>
+      <h2>Vue</h2>
+    </template>
 
-    <!-- Binding to class -->
-    <!-- Static class -->
-    <h2 class="text-color">Static Class</h2>
-
-    <!-- v-bind class binding -->
-    <h3 v-bind:class="status">v-bind Class Binding</h3>
-
-    <!-- we can add both static and dynamic class at same time -->
-    <h4 class="text-color" v-bind:class="status">static as well as dynamic</h4>
-
-    <!-- conditionally apply class to html element -->
-    <h2 v-bind:class="isPromoted && 'promoted'">Conditional class binding</h2>
-
-    <h2 v-bind:class="isSoldOut ? 'sold-out' : 'new'">SoldOut? movie</h2>
-
-    <!-- class binding with array -->
-    <h3 v-bind:class="['new', 'promoted']">Newly promoted movie</h3>
-
-    <!-- class binding with array (conditional) -->
-    <h3
-      v-bind:class="[isPromoted && 'promoted', isSoldOut ? 'sold-out' : 'new']"
-    >
-      Array Conditional
-    </h3>
-
-    <!-- Object conditional -->
-    <h3
-      v-bind:class="{
-        promoted: isPromoted,
-        new: !isSoldOut,
-        'sold-out': isSoldOut,
-      }"
-    >
-      Object Conditional
-    </h3>
-
-    <!-- bind style with object syntax -->
-    <span
-      v-bind:style="{
-        backgroundColor: highlightColor,
-        padding: '10px',
-      }"
-    >
-      Inline Style
-    </span>
-
-    <!-- bind style with styleObject syntax -->
-    <span v-bind:style="highlightStyleObject"> Style with styleObject </span>
-
-    <!-- bind style with styleObject syntax and v-bind shorthand -->
-    <span :style="[baseStyleObject, successStyle]">
-      style objects with array
-    </span>
+    <h2 v-show="display">Using v-show</h2>
   </div>
 </template>
 
@@ -70,28 +20,8 @@ export default {
   name: "App",
   data() {
     return {
-      greet: "Hello",
-      name: "Lucifer",
-      singer: "<strong>post malone</strong>",
-      headingId: "heading",
-      isDisabled: true,
-      status: "danger",
-      isPromoted: true,
-      isSoldOut: true,
-      highlightColor: "orange",
-      highlightStyleObject: {
-        padding: "5px",
-        backgroundColor: "#00bfff",
-        margin: "5px",
-      },
-      baseStyleObject: {
-        fontSize: "30px",
-        margin: "10px",
-        padding: "7px",
-      },
-      successStyle: {
-        color: "#228b22",
-      },
+      num: -1,
+      display: true,
     };
   },
 };
