@@ -1,29 +1,8 @@
 <template>
-  <div>
-    <!-- array of strings -->
-    <h2 v-for="(name, index) in names" :key="name">
-      {{ index + 1 }}. {{ name }}
-    </h2>
-
-    <!-- Array of objects -->
-    <h2 v-for="name in fullNames" :key="name.firstName">
-      {{ name.firstName }} {{ name.lastName }}
-    </h2>
-
-    <!-- Array of arrays -->
-    <div v-for="actor in actors" :key="actor.name">
-      <h2>{{ actor.name }}</h2>
-      <h3 v-for="movie in actor.movies" :key="movie">{{ movie }}</h3>
-    </div>
-
-    <!-- Iterate over the object properties -->
-    <!-- order of value, key and index matter in v-for -->
-    <h2 v-for="(value, key, index) in myInfo" :key="value">
-      {{ index + 1 }}. {{ key }} : {{ value }}
-    </h2>
-
-    <!-- v-for also support with template tag -->
-  </div>
+  <!-- conditional List Rendering -->
+  <template v-for="name in names" :key="name">
+    <h2 v-if="name === 'lucifer'">{{ name }}</h2>
+  </template>
 </template>
 
 <script>
@@ -32,34 +11,6 @@ export default {
   data() {
     return {
       names: ["devil", "lucifer", "man of mayhem"],
-      fullNames: [
-        {
-          firstName: "John",
-          lastName: "Cena",
-        },
-        {
-          firstName: "Sheldon",
-          lastName: "Cooper",
-        },
-        {
-          firstName: "Adolf",
-          lastName: "Hitler",
-        },
-      ],
-      actors: [
-        {
-          name: "Emraan Hashmi",
-          movies: ["murder 2", "Jannat", "Awarapan"],
-        },
-        {
-          name: "Vijay Deverakonda",
-          movies: ["Arjun Reddy", "Dear Comrade"],
-        },
-      ],
-      myInfo: {
-        name: "Lucifer",
-        address: "Las Vegas",
-      },
     };
   },
 };
