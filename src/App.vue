@@ -1,8 +1,10 @@
 <template>
-  <!-- conditional List Rendering -->
-  <template v-for="name in names" :key="name">
-    <h2 v-if="name === 'lucifer'">{{ name }}</h2>
-  </template>
+  <div>
+    <h2>Methods</h2>
+    <!-- Important Point Don't use Arrow function for methods -->
+    <h1>Add Method - {{ add(2, 3, 4) }}</h1>
+    <h1>multiply method - {{ multiply(baseValue) }}</h1>
+  </div>
 </template>
 
 <script>
@@ -10,8 +12,17 @@ export default {
   name: "App",
   data() {
     return {
-      names: ["devil", "lucifer", "man of mayhem"],
+      baseMultiplier: 5,
+      baseValue: 4,
     };
+  },
+  methods: {
+    add(a, b, c) {
+      return a + b + c;
+    },
+    multiply(num) {
+      return num * this.baseMultiplier;
+    },
   },
 };
 </script>
