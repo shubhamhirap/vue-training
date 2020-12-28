@@ -1,9 +1,16 @@
 <template>
   <div>
-    <h2>Methods</h2>
-    <!-- Important Point Don't use Arrow function for methods -->
-    <h1>Add Method - {{ add(2, 3, 4) }}</h1>
-    <h1>multiply method - {{ multiply(baseValue) }}</h1>
+    <h2>Binary - {{ binary }}</h2>
+    <!-- v-on directive followed by event -->
+    <div>
+      <button v-on:click="binary = 1">Change</button>
+    </div>
+
+    <h2>Count - {{ count }}</h2>
+    <div>
+      <button v-on:click="increment(1)">Increment</button>
+      <button v-on:click="decrement(1)">Decrement</button>
+    </div>
   </div>
 </template>
 
@@ -12,16 +19,16 @@ export default {
   name: "App",
   data() {
     return {
-      baseMultiplier: 5,
-      baseValue: 4,
+      binary: 0,
+      count: 0,
     };
   },
   methods: {
-    add(a, b, c) {
-      return a + b + c;
+    increment(num) {
+      this.count += num;
     },
-    multiply(num) {
-      return num * this.baseMultiplier;
+    decrement(num) {
+      this.count -= num;
     },
   },
 };
