@@ -1,17 +1,45 @@
 <template>
   <div>
-    <h2>Binary - {{ binary }}</h2>
-    <!-- v-on directive followed by event -->
-    <div>
-      <button v-on:click="change">Change</button>
-    </div>
-
-    <h2>Count - {{ count }}</h2>
-    <div>
-      <!-- 'v-on:' === '@' for events -->
-      <button @click="increment(1)">Increment</button>
-      <button @click="decrement(1)">Decrement</button>
-    </div>
+    <form>
+      <div>
+        <pre>
+          {{ JSON.stringify(formValues, null, 2) }}
+        </pre>
+      </div>
+      <div>
+        <label for="name">Name: </label>
+        <input type="text" id="name" v-model="formValues.name" />
+      </div>
+      <div>
+        <label for="profile">Profile Summary: </label>
+        <textarea id="profile" v-model="formValues.profileSummary" />
+      </div>
+      <div>
+        <label for="country">Country:</label>
+        <select name="country" id="country" v-model="formValues.country">
+          <option value="">Select a Country</option>
+          <option value="India">India</option>
+          <option value="USA">USA</option>
+          <option value="UK">England</option>
+        </select>
+      </div>
+      <div>
+        <label for="jobLocation">Job Locations:</label>
+        <select
+          name="jobLocation"
+          id="jobLocation"
+          multiple
+          v-model="formValues.jobLocation"
+        >
+          <option value="pune">Pune</option>
+          <option value="banglore">Banglore</option>
+          <option value="hyderabad">Hyderabad</option>
+          <option value="new york">New York</option>
+          <option value="callifornia">Callifornia</option>
+          <option value="london">London</option>
+        </select>
+      </div>
+    </form>
   </div>
 </template>
 
@@ -20,21 +48,15 @@ export default {
   name: "App",
   data() {
     return {
-      binary: 0,
-      count: 0,
+      formValues: {
+        name: "",
+        profileSummary: "",
+        country: "",
+        jobLocation: [],
+      },
     };
   },
-  methods: {
-    change() {
-      this.binary = 1;
-    },
-    increment(num) {
-      this.count += num;
-    },
-    decrement(num) {
-      this.count -= num;
-    },
-  },
+  methods: {},
 };
 </script>
 
@@ -43,22 +65,31 @@ export default {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  text-align: center;
+  /* text-align: center; */
   color: #2c3e50;
   margin-top: 60px;
 }
-.text-color {
-  color: #908;
+label {
+  font-weight: bold;
+  display: flex;
+  margin-top: 5px;
+  margin-bottom: 5px;
 }
-
-.promoted {
-  font-style: italic;
+input + label {
+  font-weight: bold;
+  display: inline-flex;
+  margin-right: 20px;
 }
-
-.new {
-  color: green;
-}
-.sold-out {
-  color: red;
+input[type="text"],
+textarea,
+select {
+  display: block;
+  width: 400px;
+  padding: 6px 12px;
+  font-size: 14px;
+  line-height: 1.42857143;
+  color: #555;
+  background-color: #fff;
+  background-image: none;
 }
 </style>
