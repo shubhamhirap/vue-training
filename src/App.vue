@@ -1,6 +1,6 @@
 <template>
   <div>
-    <form>
+    <form @submit="submitForm">
       <div>
         <pre>
           {{ JSON.stringify(formValues, null, 2) }}
@@ -39,6 +39,81 @@
           <option value="london">London</option>
         </select>
       </div>
+      <div>
+        <input
+          type="checkbox"
+          id="remoteWork"
+          v-model="formValues.remoteWork"
+          true-value="yes"
+          false-value="no"
+        />
+        <label for="remoteWork">Open to Remote Work?</label>
+      </div>
+      <div>
+        <label>Skill Set:</label>
+        <input
+          type="checkbox"
+          id="java"
+          value="java"
+          v-model="formValues.skillSet"
+        />
+        <label for="java">Java</label>
+        <input
+          type="checkbox"
+          id="python"
+          value="python"
+          v-model="formValues.skillSet"
+        />
+        <label for="python">Python</label>
+        <input
+          type="checkbox"
+          id="c++"
+          value="c++"
+          v-model="formValues.skillSet"
+        />
+        <label for="c++">C++</label>
+        <input
+          type="checkbox"
+          id="javascript"
+          value="javascript"
+          v-model="formValues.skillSet"
+        />
+        <label for="javascript">Javascript</label>
+        <input
+          type="checkbox"
+          id="php"
+          value="php"
+          v-model="formValues.skillSet"
+        />
+        <label for="php">PHP</label>
+      </div>
+      <div>
+        <label>Years Of Experience:</label>
+        <input
+          type="radio"
+          id="0-2"
+          value="0-2"
+          v-model="formValues.yearsOfExperience"
+        />
+        <label for="0-2">0-2</label>
+        <input
+          type="radio"
+          id="3-5"
+          value="3-5"
+          v-model="formValues.yearsOfExperience"
+        />
+        <label for="3-5">3-5</label>
+        <input
+          type="radio"
+          id="6-9"
+          value="6-9"
+          v-model="formValues.yearsOfExperience"
+        />
+        <label for="6-9">6-9</label>
+      </div>
+      <div>
+        <button>Submit</button>
+      </div>
     </form>
   </div>
 </template>
@@ -53,10 +128,18 @@ export default {
         profileSummary: "",
         country: "",
         jobLocation: [],
+        remoteWork: "no",
+        skillSet: [],
+        yearsOfExperience: "",
       },
     };
   },
-  methods: {},
+  methods: {
+    submitForm(e) {
+      e.preventDefault();
+      console.log(this.formValues);
+    },
+  },
 };
 </script>
 
