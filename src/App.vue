@@ -3,6 +3,7 @@
     <h2>FullName - {{ firstName }} {{ lastName }}</h2>
     <!-- with computed property -->
     <h2>Fullname (with computed property) - {{ fullName }}</h2>
+    <button @click="changeFullName">Change Name</button>
     <button @click="items.push({ id: 7, title: 'audi', price: 21000 })">
       Add Item
     </button>
@@ -44,11 +45,24 @@ export default {
         0
       );
     },
+    changeFullName() {
+      this.fullName = "Monica Galler";
+    },
   },
   computed: {
-    fullName() {
-      return `${this.firstName} ${this.lastName}`;
+    fullName: {
+      get() {
+        return `${this.firstName} ${this.lastName}`;
+      },
+      set(value) {
+        const name = value.split(" ");
+        this.firstName = name[0];
+        this.lastName = name[1];
+      },
     },
+    // fullName() {
+    //   return `${this.firstName} ${this.lastName}`;
+    // },
     total() {
       console.log("computed");
       return this.items.reduce(
