@@ -1,10 +1,14 @@
 <template>
   <div>
-    <!-- v-once directive - renders corresponding HTML element only once -->
-    <h2 v-once>{{ name }}</h2>
-    <button @click="name = 'batman'">Submit</button>
-    <!-- v-pre - skips comilation for corresponding element i.e. it renders element as it is on screen -->
-    <h2 v-pre>{{ name }}</h2>
+    <h2>FullName - {{ firstName }} {{ lastName }}</h2>
+    <!-- with computed property -->
+    <h2>Fullname (with computed property) - {{ fullName }}</h2>
+    <button @click="items.push({ id: 4, title: 'audi', price: 21000 })">
+      Add Item
+    </button>
+    <h3>Computed Total - ${{ total }}</h3>
+    <h3>Method Total - ${{ getTotal() }}</h3>
+    <input type="text" v-model="country" />
   </div>
 </template>
 
@@ -13,10 +17,37 @@ export default {
   name: "App",
   data() {
     return {
-      name: "vishwas",
+      firstName: "Ross",
+      lastName: "Galler",
+      items: [
+        { id: 1, title: "Honda", price: 12000 },
+        { id: 2, title: "ford", price: 10000 },
+        { id: 3, title: "BMW", price: 22000 },
+      ],
+      country: "",
     };
   },
-  methods: {},
+  methods: {
+    getTotal() {
+      console.log("total method");
+      return this.items.reduce(
+        (total, current) => (total = total + current.price),
+        0
+      );
+    },
+  },
+  computed: {
+    fullName() {
+      return `${this.firstName} ${this.lastName}`;
+    },
+    total() {
+      console.log("computed");
+      return this.items.reduce(
+        (total, current) => (total = total + current.price),
+        0
+      );
+    },
+  },
 };
 </script>
 
