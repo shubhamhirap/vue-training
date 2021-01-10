@@ -1,6 +1,7 @@
 <template>
   <div>
-    <form @submit="submitForm">
+    <!-- @submit.prevent modefier to prevent page from refreshing -->
+    <form @submit.prevent="submitForm">
       <div>
         <pre>
           {{ JSON.stringify(formValues, null, 2) }}
@@ -8,7 +9,15 @@
       </div>
       <div>
         <label for="name">Name: </label>
-        <input type="text" id="name" v-model="formValues.name" />
+        <!-- .trim is a modifier which trim spaces from user input -->
+        <!-- .lazy reflects user input at data when event changes -->
+        <!-- as we see chaning is allowed like v-model.trim.lazy -->
+        <input type="text" id="name" v-model.trim.lazy="formValues.name" />
+      </div>
+      <div>
+        <label for="age">Age:</label>
+        <!-- v-model.number modifier saves user input as number -->
+        <input type="number" id="age" v-model.number="formValues.age" />
       </div>
       <div>
         <label for="profile">Profile Summary: </label>
@@ -125,6 +134,7 @@ export default {
     return {
       formValues: {
         name: "",
+        age: null,
         profileSummary: "",
         country: "",
         jobLocation: [],
@@ -135,8 +145,7 @@ export default {
     };
   },
   methods: {
-    submitForm(e) {
-      e.preventDefault();
+    submitForm() {
       console.log(this.formValues);
     },
   },
