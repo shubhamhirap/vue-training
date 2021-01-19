@@ -6,6 +6,21 @@
       <button @click="volume += 2">Increase</button>
       <button @click="volume -= 2">Decrease</button>
     </div>
+    <input type="text" v-model="movie" />
+    <input type="text" v-model="movieInfo.title" />
+    <input type="text" v-model="movieInfo.actor" />
+
+    <!-- for array mutation -->
+    <div>
+      <button @click="movieList.push('Geeta Govindam')">ADD Movie</button>
+    </div>
+
+    <!-- For new array ref -->
+    <div>
+      <button @click="favActors = favActors.concat(['will smith'])">
+        ADD Actor
+      </button>
+    </div>
   </div>
 </template>
 
@@ -15,6 +30,13 @@ export default {
   data() {
     return {
       volume: 0,
+      movie: "Batman",
+      movieInfo: {
+        title: "",
+        actor: "",
+      },
+      movieList: ["Dear comrade", "Arjun Reddy"],
+      favActors: ["Emraan Hashmi", "Vijay Deverakonda"],
     };
   },
   methods: {},
@@ -26,6 +48,31 @@ export default {
             "Listening to high volume for a long time may damage your hearing"
           )
         : null;
+    },
+    movie: {
+      handler(newValue) {
+        console.log(`Calling API with movie name ${newValue}`);
+      },
+      immediate: true,
+    },
+    movieInfo: {
+      handler(newValue) {
+        console.log(
+          `Calling API with movie title = ${newValue.title} and actor = ${newValue.actor}`
+        );
+      },
+      deep: true,
+    },
+    movieList: {
+      handler(newValue) {
+        console.log(`Updated List ${newValue}`);
+      },
+      deep: true,
+    },
+    favActors: {
+      handler(newValue) {
+        console.log(`Updated favActors List ${newValue}`);
+      },
     },
   },
 };
